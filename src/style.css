@@ -18,6 +18,10 @@
   --transparent-tan: hsla(40.5, 25.4%, 66.9%, 0.25);
   --white: hsl(0, 0%, 100%);
   --darker-white: hsl(0, 0%, 83%);
+  --green: #3b844c;
+  --light-green: #4fa463;
+  --light-gray: hsl(0, 0%, 67%);
+  --very-light-gray: hsl(0, 0%, 90%);
 }
 
 /* ==== Global styles for all elements ==== */
@@ -111,7 +115,7 @@ main {
 /* ==== Grid Selection Styles ==== */
 
 .tabs {
-  display: flex;         
+  display: flex;
   justify-content: space-between; 
   align-items: center;
   white-space: nowrap;
@@ -149,10 +153,6 @@ main {
   gap: 20px; 
 }
 
-.hidden {
-  display: none;
-}
-
 .item {
   background-color: #ffffff;
   padding: 16px;          /* include a gap between elements */
@@ -178,21 +178,34 @@ main {
   border-radius: 8px; /* rounds the corners of the image */
 }
 
+.item-bar {
+  width: 100%;
+  background-color: var(--white);
+  display: flex;
+  gap: 5px;
+}
+
+.item-quantity {
+  background-color: var(--light-gray);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
 #overlay-img {
   margin-top: 1rem;
 }
 
-.add-button {
-  width: 100%;
+.item-button {
+  width: 80%;
   padding: 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;     /* removes border */
-  /* border-radius: 6px; */
   font-size: 1rem;
   font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease; /* smooth transition in color when hovering */
+  border-radius: 6px;
 }
 
 /* ==== Overlay Styles ==== */
@@ -233,9 +246,14 @@ main {
 }
 
 .overlay-details-text h2 {
-  font-size: 1rem;
+  font-size: 3rem;
   font-weight: bold;
+  margin-bottom: 1rem;
   text-align: center;       /* each h2 descendant is centered */
+}
+
+.overlay-details-text h3 {
+  margin-top: 1rem;
 }
 
 #overlay-buttons {
@@ -243,4 +261,84 @@ main {
   justify-content: flex-end;  /* flex items to the right of the page */
   gap: 0.5em;
   margin-top: 1em;  /* small space above the buttons */
+}
+
+.add-button {
+  background-color: var(--green);
+  color: white;
+  border: none;     /* removes border */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease; /* smooth transition in color when hovering */
+}
+
+.add-button:hover {
+  background-color: var(--light-green);
+}
+
+#page-2 {
+  padding: 32px 10px;
+  margin: 100px;
+}
+
+.cart-div { 
+  background-color: var(--white);
+  border-radius: 8px;
+  margin-top: 12px;
+  padding: 12px 12px;
+}
+
+#cart-container {
+  display: block;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+.cart-element {
+  padding: 15px;
+  align-items: center;
+  border-radius: 8px;
+  background-color: var(--very-light-gray);
+}
+
+.cart-element p {
+  padding: 3px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-results p {
+  padding: 3px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cart-results {
+  width: 80%;
+}
+
+span {
+  font-weight: bold;
+  padding-right: 10px;
+  padding-right: 30px;
+}
+
+.cart-buttons button {
+  margin: 10px;
+  padding: 10px;
+}
+
+.divider {
+  background-color: var(--light-gray);
+  margin: 5px 0;
+  height: 3px;
+}
+
+.cart-results {
+  padding: 15px;
+}
+
+.hidden {
+  display: none;
 }

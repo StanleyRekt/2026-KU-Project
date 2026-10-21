@@ -25,9 +25,9 @@
     </div>
 
     <nav class="navbar">
-      <a onclick="display(`selection`)">Selection</a>
-      <a onclick="display(`cart`)">Cart Order</a>
-      <a onclick="display(`queue`)">List queue</a>
+      <a class="page-nav" id="nav1">Selection</a>
+      <a class="page-nav" id="nav2">Cart Order</a>
+      <a class="page-nav" id="nav3">List queue</a>
     </nav>
   </header>
 
@@ -36,7 +36,7 @@
   <!-- Primary content of the webpage, all inside main "container" -->
   <main class="container">
 
-    <div id="page-1" class="page">
+    <div id="page-1" class="page hidden">
 
       <!-- ======== Tab Selection Bar ============ -->
       <div class="tabs">
@@ -73,7 +73,7 @@
 
       <!-- ======== Overlay Content ============ -->
       <!-- For each product the user can click on it to view more details, displaying over the webpage -->
-      <div class="overlay, hidden">
+      <div class="overlay hidden" id="overlay-container">
         <div id="overlay-content">
 
           <!-- Text above details, default labels to provide context-->
@@ -92,8 +92,9 @@
               <h3>Cost: so much</h3>
 
               <div id="overlay-buttons">
-                <button class="overlay-button">Close</button>
-                <button class="overlay-button">Add to Cart</button>
+                <button class="tab-button" id="overlay-close-button">Close</button>
+                <button class="tab-button add-button" id="add-to-cart-button">Add to Cart</button>
+                <input class="item-quantity" type="number" id="quantity" value="1" min="1" max="99" step="1">
               </div>
 
             </div>
@@ -104,12 +105,25 @@
 
     </div>
 
-    <div id="page-2" class="page-hidden">
+    <div id="page-2" class="page hidden">
       <h2>Cart Order</h2>
-      <p>This is the placeholder for Cart Order</p>
+      <div class="cart-div">
+        <div id="cart-container"></div>
+
+        <div class="cart-results">
+          <p id="net-cost"><span>Net Cost:</span>$0.00</p>
+          <p id="tax-rate"><span>Tax Rate (%8.5):</span>$0.00</p>
+          <p id="final-cost"><span>Final Cost:</span>$0.00</p>
+        </div>
+
+        <div class="cart-buttons">
+          <button class="tab-button add-button" id="cart-purchase-button">Purchase</button>
+          <button class="tab-button" id="cart-clear-button">Clear Cart</button>
+        </div>
+      </div>
     </div>
 
-    <div id="page-3" class="page-hidden">
+    <div id="page-3" class="page hidden">
       <h2>List Queue</h2>
       <p>This is the placeholder for List Queue</p>
     </div>
