@@ -44,10 +44,10 @@
 
         <!-- Tab buttons for each product categories -->
         <div class="tab-buttons">
-          <button class="tab-button">Swords</button>
-          <button class="tab-button">Armor</button>
-          <button class="tab-button">Protection</button>
-          <button class="tab-button">Cooking</button>
+          <button class="btn tab-button">Swords</button>
+          <button class="btn tab-button">Armor</button>
+          <button class="btn tab-button">Protection</button>
+          <button class="btn tab-button">Cooking</button>
         </div>
 
         <!-- Search bar for quick product selection -->
@@ -92,8 +92,8 @@
               <h3>Cost: so much</h3>
 
               <div id="overlay-buttons">
-                <button class="tab-button" id="overlay-close-button">Close</button>
-                <button class="tab-button add-button" id="add-to-cart-button">Add to Cart</button>
+                <button class="btn" id="overlay-close-button">Close</button>
+                <button class="btn add-button" id="add-to-cart-button">Add to Cart</button>
                 <input class="item-quantity" type="number" id="quantity" value="1" min="1" max="99" step="1">
               </div>
 
@@ -117,15 +117,20 @@
         </div>
 
         <div class="cart-buttons">
-          <button class="tab-button add-button" id="cart-purchase-button">Purchase</button>
-          <button class="tab-button" id="cart-clear-button">Clear Cart</button>
+          <button class="btn add-button" id="cart-purchase-button">Purchase</button>
+          <button class="btn" id="cart-clear-button">Clear Cart</button>
         </div>
       </div>
     </div>
 
     <div id="page-3" class="page hidden">
       <h2>List Queue</h2>
-      <p>This is the placeholder for List Queue</p>
+      <div class="list-div">
+        <div id="list-container">
+          
+
+        </div>
+      </div>
     </div>
   </main>
 

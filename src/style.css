@@ -121,7 +121,7 @@ main {
   white-space: nowrap;
 }
 
-.tab-button {
+.btn {
   font-size: 1rem;            /* equals 16px with proportionality to root font size */
   cursor: pointer;            /* Shows a pointer icon on cursor when hovering */
   text-align: center;
@@ -295,6 +295,7 @@ main {
 
 .cart-element {
   padding: 15px;
+  margin-bottom: 5px;
   align-items: center;
   border-radius: 8px;
   background-color: var(--very-light-gray);
@@ -337,6 +338,41 @@ span {
 
 .cart-results {
   padding: 15px;
+}
+
+
+
+#page-3 {
+  padding: 32px 10px;
+  margin: 100px;
+}
+
+.list-div { 
+  background-color: var(--white);
+  border-radius: 8px;
+  margin-top: 12px;
+  padding: 12px 12px;
+}
+
+#list-container {
+  display: block;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+.list-element {
+  padding: 15px;
+  margin-bottom: 5px;
+  align-items: center;
+  border-radius: 8px;
+  background-color: var(--very-light-gray);
+}
+
+.list-element p {
+  padding: 3px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .hidden {

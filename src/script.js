@@ -1,4 +1,4 @@
-console.log("Hello World!");
+
 /*
   While I could theoretically just add this to my script.js, however I want to keep my data separate from my code.
 
@@ -26,6 +26,8 @@ const finalCostResult = document.getElementById("final-cost");
 const cartPurchaseButton = document.getElementById("cart-purchase-button");
 const cartClearButton = document.getElementById("cart-clear-button");
 
+const listContainer = document.getElementById("list-container");
+
 let cartElements = {};
 
 class Cart {
@@ -33,7 +35,7 @@ class Cart {
     this.items = [];
     this.totalCost = 0;
     this.taxPercent = 8.5;
-    this.elements = {};
+    this.elements = [];
   }
 
   addItem(id, amount) {
@@ -70,8 +72,6 @@ class Cart {
       <div class="divider"></div>
       <p><span>Total Price:</span> $${totalPrice}</p>
     `
-
-    console.log("test");
   }
 
   calculateResult() {
@@ -84,30 +84,69 @@ class Cart {
     let taxCost = netCost * this.taxPercent / 100;
     let finalCost = netCost + taxCost;
 
-    netCostResult.textContent = `$${netCost}`;
-    taxRateResult.textContent = `$${taxCost}`;
-    finalCostResult.textContent = `$${finalCost}`;
+    netCostResult.innerHTML = `<span>Net Cost:</span>$${netCost.toFixed(2)}`;
+    taxRateResult.innerHTML = `<span>Tax Rate (%8.5):</span>$${taxCost.toFixed(2)}`;
+    finalCostResult.innerHTML = `<span>Final Cost:</span>$${finalCost.toFixed(2)}`;
 
     this.totalCost = finalCost;
   }
 
   clearCart() {
-    for (const element of this.elements) {
-      element.remove();
+    if (this.items.length <= 0) {
+      return;
     }
+
+    this.elements.forEach((element) => {
+      element.remove();
+    })
 
     this.items = [];
     this.totalCost = 0;
-    this.elements = {};
+    this.elements = [];
 
     cartElements.innerHTML = "";
+    this.calculateResult();
+  }
+
+  purchase() {
+    if (this.items.length <= 0) {
+      return;
+    }
+
+    let listElement = document.createElement("div");
+    listElement.className = "list-element"
+
+    listContainer.appendChild(listElement);
+    
+    listElement.innerHTML += `<span>Order #${listOrders.length + 1}</span>`
+
+    let netCost = 0;
+
+    this.items.forEach((itemInfo) => {
+      let cost = itemInfo.price * itemInfo.amount;
+      netCost += cost;
+
+      listElement.innerHTML += `<p>Amount: ${itemInfo.amount} <span>${itemInfo.name}</span><span>$${cost.toFixed(2)}</span></p>`;
+    })
+
+    let taxCost = netCost * this.taxPercent / 100;
+    let finalCost = netCost + taxCost;
+
+    listElement.innerHTML += `<div class="divider"></div>`
+    listElement.innerHTML += `<p><span>Cost:</span>$${finalCost.toFixed(2)}</p>`;
+
+    listOrders.push(listElement);
   }
 }
 
+
+let listOrders = [];
 const cart = new Cart();
 
 cartPurchaseButton.addEventListener("click", () => {
   cart.calculateResult();
+  cart.purchase();
+  cart.clearCart();
 })
 
 cartClearButton.addEventListener("click", () => {
@@ -154,11 +193,10 @@ for (let i = 0; i < productData.length; i++) {
 
     itemElement.querySelector(`#add-to-cart-button`).addEventListener("click", () => {
       cart.addItem(i, Number(quantityElement.value));
+      cart.calculateResult();
     })
   }
 }
-
-console.log(elementCategories);
 
 const navbarElements = document.querySelectorAll(".page-nav");
 let currentPageElement = null;
@@ -185,8 +223,7 @@ navbarElements.forEach((a) => {
   })
 });
 
-showPage(2);
-
+showPage(1);
 
 const tabsLabelElement = document.getElementById("tabs-label");
 let currentCategoryElement = null;
@@ -235,8 +272,6 @@ function setOverlayContent(itemId) {
     return;
   }
 
-  console.log("test");
-
   currentOverlayId = itemId;
   const product = productData[itemId];
 
@@ -256,8 +291,8 @@ function setOverlayContent(itemId) {
           <h3>Cost: $${product.price}</h3>
 
           <div id="overlay-buttons">
-            <button class="tab-button" id="overlay-close-button">Close</button>
-            <button class="tab-button add-button" id="add-to-cart-button">Add to Cart</button>
+            <button class="btn" id="overlay-close-button">Close</button>
+            <button class="btn add-button" id="add-to-cart-button">Add to Cart</button>
             <input class="item-quantity" type="number" id="quantity" value="1" min="1" max="99" step="1">
           </div>
         </div>
@@ -274,5 +309,6 @@ overlayElement.addEventListener("click", (element) => {
     const overlayQuantityElement = document.getElementById("quantity");
 
     cart.addItem(currentOverlayId, Number(overlayQuantityElement.value));
+    cart.calculateResult();
   }
 })
