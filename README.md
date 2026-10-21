@@ -56,5 +56,15 @@ To run this application locallyon your personal computer (or magical orb), follo
 3. **Launch the app:**
    Open the `index.html` file in any modern web browser (Google Chrome, Microsoft Edge, Safari) to interact with the webpage.
 
+You could also use the > Git Clone, then create a folder directory. I recommend using Live Server and right clicking on index.html to open to a browser easily.
+
 ## Team Contribution
 *   I'm running solo. Me, Shane Z, developed this project with the help of online learning tools such as "freeCodeCamp," "Youtube," "CodeSandbox," etc.
+
+## Gunter's mining mini game
+*   Mining, in order to purchase, you must dig far down enough so that you can finally purhcase your tools. Adding more tools allow you to deal more damage, however winning costs more as you must pay the total price of borrowing the weapons.
+
+Controls:
+   A - Left
+   D - Right
+   E - Attack

@@ -24,6 +24,7 @@
       </p>
     </div>
 
+    <!--Navigation elements to different pages. javascript defaults to selection-->
     <nav class="navbar">
       <a class="page-nav" id="nav1">Selection</a>
       <a class="page-nav" id="nav2">Cart Order</a>
@@ -31,8 +32,10 @@
     </nav>
   </header>
 
+  <!--Background image for aesthetic purposes, very cool medieval minecraft build-->
   <img class="background-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxfuU-9UrqIviCsEBEQ3CmcuzemC4q14-Mmhmfy4_nL16TyyqX-RcaZg&s=10" alt="Beautiful Medieval Minecraft Build" />
   
+  <!--The microphone element that when clicked opens a overlay element-->
   <div id="mic-div">
     <button id="mic-btn" class="microphone">&#127908</button>
   </div>
@@ -40,6 +43,7 @@
   <!-- Primary content of the webpage, all inside main "container" -->
   <main class="container">
 
+    <!--Website seperated by pages, these pages correlate to the navbar: Page1 is Selection, Page2 is Cart Order, Page3: List queue.-->
     <div id="page-1" class="page hidden">
 
       <!-- ======== Tab Selection Bar ============ -->
@@ -53,11 +57,9 @@
           <button class="btn tab-button">Cooking</button>
         </div>
 
-        <!-- Somewhere around here I'll include my custom feature -->
-
       </div>
 
-      <br>
+      <br> <!--seperation element between the tab buttons and grid-->
 
       <!-- ======== Product Content ============ -->
       <div class="selection">
@@ -91,9 +93,12 @@
               <p>Wow this placeholder label is so cool this is a description of me saying how cool it is.</p>
               <h3>Cost: so much</h3>
 
+              <!-- These buttons match the same buttons on the grid elements.-->
               <div id="overlay-buttons">
                 <button class="btn" id="overlay-close-button">Close</button>
                 <button class="btn add-button" id="add-to-cart-button">Add to Cart</button>
+
+                <!--Quantity element to allow the user to order more than one item at a time-->
                 <input class="item-quantity" type="number" id="quantity" value="1" min="1" max="99" step="1">
               </div>
 
@@ -103,35 +108,68 @@
         </div>
       </div>
 
+      <!-- ======== Special Feature: Microphone Content ============ -->
       <div class="overlay hidden" id="mic-overlay-container">
         <div id="overlay-content" class="microphone-content">
+
+            <!--The output displays the text result from speech recognition -->
             <p id="output">Testing Testing...</p>
+
             <button id="record-btn" class="microphone">&#127908</button>
+
+            <!--Output terminal to display the current status of the speech recognition-->
             <label id="output-terminal">Click on Microphone to start speaking</label>
+
+            <!--Soon will display the itmes detected by the Speech Recognition and "determineLikeness" function -->
             
+            <!-- Future texture to replace the Verbal part of this quick ordering feature.-->
         </div>
       </div>
 
     </div>
 
+    <!-- ======== Page 2 : Cart Order ======= -->
+     <!-- this presents the main collection of "add to cart" items selected by the client-->
     <div id="page-2" class="page hidden">
       <h2>Cart Order</h2>
       <div class="cart-div">
+
+        <!-- Container Element for the JS code to input ordered elements -->
         <div id="cart-container"></div>
 
+        <!-- The displays for Net/Final total costs including tax -->
         <div class="cart-results">
           <p id="net-cost"><span>Net Cost:</span>$0.00</p>
           <p id="tax-rate"><span>Tax Rate (%8.5):</span>$0.00</p>
           <p id="final-cost"><span>Final Cost:</span>$0.00</p>
         </div>
 
+        <!-- Interactable buttons for the cart. -->
         <div class="cart-buttons">
           <button class="btn add-button" id="cart-purchase-button">Purchase</button>
           <button class="btn" id="cart-clear-button">Clear Cart</button>
+          <label class="warning">You must reach the bottom to purchase, prove your worthy! Adding items to your cart can increase your attack damage.</label>
         </div>
       </div>
     </div>
 
+    <!-- Player elements and health-->
+    <div id="player">
+        <label id="damage-label">Attack Damage: 5</label>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/069/167/618/small/pixelated-hero-with-vibrant-red-cloak-poised-for-action-on-isolated-transparent-presentation-png.png">
+
+        <div id="tools">
+
+        </div>
+    </div>
+
+    <div id="game">
+        
+
+    </div>
+
+    <!-- ======== Page 3 : Queue List  ======= -->
+     <!-- Displays a list of the items from the cart that are compact into a singular order for Gunter to read off of -->
     <div id="page-3" class="page hidden">
       <h2>List Queue</h2>
       <div class="list-div">

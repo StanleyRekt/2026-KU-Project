@@ -60,11 +60,13 @@ header {
 }
 
 .topbar-primary {
-  flex-basis: 75%;
+  flex-basis: 75%; /* I found out flex-basis can be used to control the proportion of flex*/
 }
 
+/* ======= Navbar Styling ======= */
+
 .navbar {
-  flex-basis: 25%;
+  flex-basis: 25%; /*navbar will have smaller area than the title+description*/
   display: flex;
   justify-content: flex-end;
   gap: 15px;
@@ -74,11 +76,11 @@ header {
 .navbar a {
   background-color: var(--dark-tan);
   padding: 6px;
-  font-size: 1rem;
+  font-size: 1rem; 
   font-weight: bold;
   color: white;
   text-align: center;
-  white-space: nowrap;
+  white-space: nowrap; /* Prevents the text from wrapp, however it unfortunately causes overflow*/
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -88,19 +90,16 @@ main {
 }
 
 .background-img {
-  position: fixed;
+  position: fixed; /*Ignores the header elements, positions directly to the top left corner*/
   top: 0;
   left: 0;
   width: 100%;
   height: auto;
   object-fit: cover;
-  z-index: -1;
+  z-index: -1; /* Displays behind the rest of the elements */
+  /*Added a linear-gradient to transiion to the foreground color, looks really cool imo*/
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
 
-}
-
-.page-hidden {
-  display: none;
 }
 
 .page {
@@ -108,7 +107,7 @@ main {
   padding: 20px;
   background-color: var(--transparent-tan);
   border-radius: 8px;
-  overflow: auto; 
+  overflow: auto; /* Adds a scrollbar when the elements exceed the page */
   margin-top: 20px;
 }
 
@@ -121,6 +120,8 @@ main {
   white-space: nowrap;
 }
 
+/* This is a good button class to use to establish a similar styling without standing out too much */
+
 .btn {
   font-size: 1rem;            /* equals 16px with proportionality to root font size */
   cursor: pointer;            /* Shows a pointer icon on cursor when hovering */
@@ -128,10 +129,11 @@ main {
   border: 1px solid #ccc;   /* replaces border around button */
   padding: 4px 8px;
   font-weight: bold;
-  text-transform: uppercase; 
+  text-transform: uppercase;  /* all letters in the text becomes uppercase. */
   background-color: var(--white);
 }
 
+/* pseuclasses used to give more interactive feeling of the buttons  */
 .tab-button:hover {
   background-color: var(--darker-white);
 }
@@ -140,12 +142,7 @@ main {
   background-color: var(--tan);
 }
 
-#selection-search {
-  font-weight: bold;
-  text-transform: uppercase; 
-  border: none;
-  padding: 5px;
-}
+/* ======= GRID : Item Elements Styling ======== */ 
 
 .grid {
   display: grid;  /* established grid layout */
@@ -185,10 +182,11 @@ main {
   gap: 5px;
 }
 
+/* Tried my best to make the quantity look a little better, but for better designs I'd have to create a custom element...  */
 .item-quantity {
   background-color: var(--light-gray);
   border: none;
-  outline: none;
+  outline: none; /* Removes the outline when active  */
   border-radius: 4px;
   font-size: 1.2rem;
   font-weight: bold;
@@ -196,10 +194,7 @@ main {
   cursor: pointer;
 }
 
-#overlay-img {
-  margin-top: 1rem;
-}
-
+/* Add to cart button */
 .item-button {
   width: 80%;
   padding: 10px;
@@ -211,6 +206,7 @@ main {
 /* ==== Overlay Styles ==== */
 
 #overlay-img {
+  margin-top: 1rem;
   width: 50%;
 }
 
@@ -233,7 +229,7 @@ main {
   border-radius: 8px;
   /*margin: 100px;*/
   width: 70%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9; /* Aspect ratio, like the name sustains the element's ratio from width / height */
   height: auto;
   max-height: 90vh;           /* overlay doesn't exceed 400px */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);   /* casts shadow over content */
@@ -275,11 +271,16 @@ main {
   background-color: var(--light-green);
 }
 
+/* ======= Page 2 : Cart Order ======= */
+
+/* I discovered a way easier way to center and focus elements in the middle by using padding, instead of justify-content: center */
+
 #page-2 {
-  padding: 32px 10px;
+  padding: 32px 10px; 
   margin: 100px;
 }
 
+/* This sets the main size of the cart itself, I planned it to be thin to resemble receipts from stores. */
 .cart-div { 
   background-color: var(--white);
   border-radius: 8px;
@@ -293,14 +294,17 @@ main {
   border-radius: 8px;
 }
 
+/* The cart-element used to represent each item /w amount, price, etc.  */
+
 .cart-element {
   padding: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 5px; /* So the elements aren't touching in a weird way */
   align-items: center;
   border-radius: 8px;
   background-color: var(--very-light-gray);
 }
 
+/* Seperates the text to both sides,  */
 .cart-element p {
   padding: 3px;
   font-size: 1.2rem;
@@ -340,6 +344,7 @@ span {
   padding: 15px;
 }
 
+/* ======== Page 3 : Order List ====== */
 
 
 #page-3 {
@@ -375,6 +380,8 @@ span {
   justify-content: space-between;
 }
 
+/* The microphone syling is mainly a fixed element decal */
+
 .microphone-content button {
   font-size: 3rem;
 }
@@ -397,6 +404,53 @@ span {
   left: 90%;
   font-size: 2rem;
   background-color: rgba(0,0,0,0);
+}
+
+#game {
+  background-color: white;
+  opacity: 1;
+  display: grid;  /* established grid layout */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.1px; 
+  justify-content: center;
+
+}
+
+#player {
+  background-color: var(--tan);
+  width: 100px;
+  aspect-ratio: 1;
+  margin: 3px;
+  position: float;
+  transform: translate(0px, 0px);
+  ;
+}
+
+#player img {
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.block-element {
+  background-color: lightgreen;
+  width: auto;
+  aspect-ratio: 1;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: visible;
+  border-radius: 8px;
+}
+
+.block-label {
+  font-weight: bold;
+  transform: rotate(30deg);
+}
+
+#damage-label {
+  font-size: 0.5rem;
+  padding: 5px
 }
 
 .hidden {

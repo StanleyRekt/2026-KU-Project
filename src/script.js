@@ -7,15 +7,18 @@
   
 */
 
+// Fetching the Json file that includes product info
 const productData = await fetch("../json/ProductData.json")
   .then((response) => response.json())
   .catch((error) => console.error(error));
 
+  // establishing categories for tools
 const productCategories = ["Swords", "Armor", "Protection", "Cooking"];
 let productsByCategory = {};
 let elementCategories = {};
 let elementProducts = {};
 
+// Important element variables
 const itemsContainer = document.getElementById("grid-container");
 const cartContainer = document.getElementById("cart-container");
 
@@ -29,6 +32,8 @@ const cartClearButton = document.getElementById("cart-clear-button");
 const listContainer = document.getElementById("list-container");
 
 let cartElements = {};
+
+// This class is the Shopping cart that keeps track of the itesm and totalCOst
 
 class Cart {
   constructor() {
@@ -76,7 +81,7 @@ class Cart {
 
   calculateResult() {
     let netCost = 0;
-
+    // Adds up the costs to geta net cost then apply tax
     this.items.forEach((itemInfo) => {
       netCost += itemInfo.price * itemInfo.amount;
     })
@@ -96,6 +101,8 @@ class Cart {
       return;
     }
 
+    //Clear cart removes the element and refresh the shop
+
     this.elements.forEach((element) => {
       element.remove();
     })
@@ -113,6 +120,7 @@ class Cart {
       return;
     }
 
+    // Purhcase moves Creates an element to showcase the order element.
     let listElement = document.createElement("div");
     listElement.className = "list-element"
 
@@ -122,6 +130,7 @@ class Cart {
 
     let netCost = 0;
 
+    // Each layer of the order has the amount, name, and cost
     this.items.forEach((itemInfo) => {
       let cost = itemInfo.price * itemInfo.amount;
       netCost += cost;
@@ -153,6 +162,7 @@ cartClearButton.addEventListener("click", () => {
   cart.clearCart();
 })
 
+// Establishing Category elements for the grid of items
 for (const category of productCategories) {
   productCategories[category] = [];
   const categoryElement = document.createElement("section");
@@ -164,6 +174,7 @@ for (const category of productCategories) {
   elementCategories[category] = categoryElement;
 }
 
+// This is each item being created under the category element. Including details like image and title.
 for (let i = 0; i < productData.length; i++) {
   const product = productData[i];
   const categoryElement = elementCategories[product.category];
@@ -186,13 +197,17 @@ for (let i = 0; i < productData.length; i++) {
     categoryElement.appendChild(itemElement);
     const quantityElement = itemElement.querySelector(`#quantity-${i}`);
 
+    // syncing and event listenrs for overlay and quantity
+
     itemElement.querySelector(`img.product-img`).addEventListener("click", (itemElement) => {
       setOverlayContent(i);
       setOverlay(true);
     })
 
     itemElement.querySelector(`#add-to-cart-button`).addEventListener("click", () => {
-      cart.addItem(i, Number(quantityElement.value));
+      const quantityValue = Number(quantityElement.value);
+      cart.addItem(i, quantityValue);
+      setAttackDamage(playerDamage + 5 * quantityValue);
       cart.calculateResult();
     })
   }
@@ -200,6 +215,8 @@ for (let i = 0; i < productData.length; i++) {
 
 const navbarElements = document.querySelectorAll(".page-nav");
 let currentPageElement = null;
+
+// Showpage moves the "hidden" class so that the next page is can be shown while the previous is hidden.
 
 function showPage(page) {
   const pageElement = document.getElementById(`page-${page}`);
@@ -217,17 +234,20 @@ function showPage(page) {
   currentPageElement = pageElement;
 }
 
+// Establishing the navigation elements for each page based on their id.
 navbarElements.forEach((a) => {
   a.addEventListener("click", () => {
     showPage(Number(a.id.replace("nav", "")));
   })
 });
 
+// Initializes the first page to be shown : "Selection"
 showPage(1);
 
 const tabsLabelElement = document.getElementById("tabs-label");
 let currentCategoryElement = null;
 
+// Similar to showPage, however it shows the category of items displaying the contents.
 function showCategory(category) {
   const categoryElement = elementCategories[category];
 
@@ -246,6 +266,7 @@ function showCategory(category) {
   tabsLabelElement.textContent = `Selection: ${category}`;
 }
 
+// Synching the category tab buttons to show category
 const tabButtons = document.querySelectorAll(`.tab-button`);
 
 tabButtons.forEach((button) => {
@@ -254,10 +275,14 @@ tabButtons.forEach((button) => {
   })
 });
 
+
+// Initializes to shown the items with Swords Category first.
 showCategory("Swords");
 
 const overlayElement = document.getElementById("overlay-container");
 let currentOverlayId = 0;
+
+// Overlay swtiches on and off based on whether it's enabled or not.
 
 function setOverlay(enable) {
   if (enable) {
@@ -266,6 +291,8 @@ function setOverlay(enable) {
     overlayElement.classList.add("hidden");
   }
 }
+
+// This syncs the overlay information with the item the client clicks on
 
 function setOverlayContent(itemId) {
   if (currentOverlayId === itemId) {
@@ -301,17 +328,23 @@ function setOverlayContent(itemId) {
   `
 }
 
+// This is the general input binds for the overlay, including their own buttons which just checks the target.
+
 overlayElement.addEventListener("click", (element) => {
   if (element.target.id === "overlay-container" || element.target.id === "overlay-close-button") {
     setOverlay(false);
   }
   if (element.target.id == "add-to-cart-button") {
     const overlayQuantityElement = document.getElementById("quantity");
+    const quantityValue = Number(overlayQuantityElement.value);
 
-    cart.addItem(currentOverlayId, Number(overlayQuantityElement.value));
+    cart.addItem(currentOverlayId, quantityValue);
+    setAttackDamage(playerDamage + 5 * quantityValue);
     cart.calculateResult();
   }
 })
+
+// One of my special features, right now it sets up the mic element to be toggleable in the Selection Page
 
 const micElement = document.getElementById("mic-btn");
 const micOverlayElement = document.getElementById("mic-overlay-container");
@@ -324,6 +357,8 @@ function setMicOverlay(enable) {
   }
 }
 
+// Similar logic with the overlay event listener.
+
 micOverlayElement.addEventListener("click", (element) => {
   if (element.target.id === "mic-overlay-container" || element.target.id === "overlay-close-button") {
     setMicOverlay(false);
@@ -334,6 +369,7 @@ micElement.addEventListener("click", () => {
   setMicOverlay(true);
 })
 
+// Here's the actual logic behind the Speech Recognition.
 
 const recordButton = document.getElementById("record-btn");
 const output = document.getElementById("output");
@@ -343,20 +379,24 @@ const outputTerminal = document.getElementById("output-terminal");
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 let isListening = false;
+
+// Because some people may say "a sword" or the speech with return a number in word form.
 let patternTranslation = {"a": 1, "an": 1, "any": 1, "some": 4, "couple": 5, "dozen": 12, "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9};
 
 let namePatterns = {};
 let numericalPatterns = [1, 2, 3, 4, 5, 6, 7, 8, 9]; /* One day I'll have this count above single digits */
 
 let patternRepository = [];
-let pairs = [];
+let pairs = []; // An example of a pair is [amount, elementId]
 
 let targetNumerical = null;
 
+// This splits a sentence with long/short spaces into an array of trimmed words
 function seperateString(sentence) {
   return sentence.trim().toLowerCase().split(/\s+/);
 }
 
+// First use case of simplified being used to create patterns in voice text
 for (let i = 0; i < productData.length; i++) {
   const product = productData[i];
 
@@ -365,6 +405,8 @@ for (let i = 0; i < productData.length; i++) {
 
 console.log(namePatterns);
 
+
+// Determine likeness pushes pairs of Amount (numerical) and ElementId (item)
 function determineLikeness(word) {
   console.log(word);
   if (patternTranslation[word]) {
@@ -378,6 +420,9 @@ function determineLikeness(word) {
     return true;
   }
   console.log(targetNumerical);
+
+//   THIS, THIS gave me an aneurysm, I'm sad I couldn't see it in it's final form.
+  
   for (let i = 0; i < productData.length; i++ ){
     const words = namePatterns[i];
     for (const pattern of words) {
@@ -396,16 +441,20 @@ function determineLikeness(word) {
   return false;
 }
 
+// Setup of Speech Recognition
+
 if (!SpeechRecognition) {
   alert("Browser does not support Speech Recognition.");
 
 } else {
   const recognition = new SpeechRecognition();
 
+  // Attributes
   recognition.continuous = true;
   recognition.interimResults = true;
   recognition.lang = 'en-US';
 
+  // Toggle On/Off for the Mic Element
   recordButton.addEventListener('click', () => {
     if (isListening) {
       recognition.stop();
@@ -421,8 +470,14 @@ if (!SpeechRecognition) {
     }
   });
 
+  // This is what actually gets detect and ran, I watched a youtube video from a man "amsnippetzz" over SPeech Recognition 
+
+  // If I were to take back up and finalize this feature (which is very possible given the pairs work correctly).
+  // A person can say "I want a copper sword" and the "a" would turn into a 1, while "copper" is a pattern that gets detected.
+  // Leading to a pair of [1, copper sword ID], Using this I could create a small div labeling the item itself.
+  // Prompting the user of it's accuracy.
+
   recognition.onresult = function (event) {
-    console.log("RESET");
     patternRepository = [];
     targetNumerical = null;
     let transcript = "";
@@ -464,3 +519,166 @@ if (!SpeechRecognition) {
     console.log(patternRepository);
   };
 }
+
+// This is where the mini game takes in place, a silly small game of a knight mining through to purchase his weapons.
+
+let playerWon = false;
+
+// hehhehee purchase locked!
+function setPurchaseButton() {
+  if (!playerWon) {
+
+    cartPurchaseButton.style[`background-color`] = "red";
+    cartPurchaseButton.textContent = "Locked!";
+  } else {
+    cartPurchaseButton.style[`background-color`] = "green";
+    cartPurchaseButton.textContent = "Purchase";
+
+  }
+}
+
+setPurchaseButton();
+
+const gameContainer = document.getElementById("game");
+
+const goalDepth = 10;
+let blockHorizontalAmount = 5;
+
+let blocksStorage = [];
+let blocks = {};
+let blocksMaxHealth = {};
+let blocksHealth = {};
+let blockDeathCount = 0;
+let blockAmount = goalDepth * blockHorizontalAmount;
+
+function parseXY(x,y) {
+  return `${x}, ${y}`;
+}
+
+const player = document.getElementById("player");
+const attackDmgLabel = document.getElementById("damage-label");
+
+// Generates the cells with their own health multiplied by the depth, making progression harder.
+
+for (let x = 1; x <= goalDepth; x++) {
+  for (let y = 1; y <= blockHorizontalAmount; y++) {
+    const blockElement = document.createElement("div");
+    //console.log(x,y);
+    blockElement.className = "block-element";
+
+    let health = 100 * x;
+
+    blockElement.innerHTML = `
+      <p class="block-label">Health: ${health}</p>
+    `
+
+    let index = parseXY(x,y);
+    blocks[index] = blockElement;
+    blocksStorage.push(blockElement);
+    blocksHealth[index] = health;
+    blocksMaxHealth[index] = health;
+    gameContainer.appendChild(blockElement)
+  }
+}
+
+let playerX = 1;
+let playerMaxX = 5;
+let playerY = 1;
+
+let playerDamage = 5;
+
+// Moves the player X and Y based on some constants.
+
+function goDirection(direction){
+  let nextPlayerX = playerX + direction;
+
+  playerX = Math.max(Math.min(nextPlayerX, playerMaxX), 1);
+  const blockElement = blocks[parsePosition(getPosition())];
+  const rect = blockElement.getBoundingClientRect();
+
+  let x = rect.left;
+  let y = blockElement.offsetHeight * (playerY - 1);
+
+  /*player.style.transform = `translate(${rect.left}px, 0px)`;*/
+  player.style.transform = `translate(${rect.left}px, ${y}px)`
+}
+
+// Some helper functions to make the gameplay more modulated.
+
+function setAttackDamage(newAttackDamage) {
+  playerDamage = newAttackDamage;
+  attackDmgLabel.textContent = `Attack Damage: ${newAttackDamage}`
+}
+
+function getPosition(){
+  return [playerX, playerY]; 
+}
+
+function parsePosition(pos){
+  return parseXY(pos[1], pos[0]);
+}
+
+function setBlockHealth(index, newHealth){
+  newHealth = Math.max(newHealth, 0);
+
+  const element = blocks[index];
+  blocksHealth[index] = newHealth;
+
+  let int = 100 * (1 - newHealth / blocksMaxHealth[index])
+
+  element.innerHTML = `
+    <p class="block-label">Health: ${newHealth}</p>
+  `
+  element.style["background-color"] = `color-mix(in oklab, lightgreen, red ${int}%)`
+
+  // prevents already defeated cells from counting as deathcount, and if all are death then player wins
+  // also using some witz math, we can using Math.floor + 1 to determine the current layer.
+
+  if ((newHealth === 0) && (element.style.visibility !== "hidden")) {
+    element.style.visibility = "hidden";
+    blockDeathCount++;
+    playerY = Math.floor(blockDeathCount / blockHorizontalAmount) + 1;
+    playerY = Math.min(playerY, goalDepth);
+    goDirection(0);
+  }
+  console.log(blockDeathCount
+  )
+  if (blockDeathCount >= blockAmount) {
+    playerWon = true;
+    setPurchaseButton();
+    // finally removes the cells and congratulatse player.
+    gameContainer.innerHTML = `
+      <p style = "font-size: 2rem"> You Win! :D </p>
+    `
+    for (const block of blocksStorage) {
+      block.remove();
+    }
+    
+  }
+  
+}
+
+// attack which damage block health.
+
+function attack(){
+  let positionParsed = parsePosition(getPosition());;
+  const blockElement = blocks[positionParsed];
+  const blockHealth = blocksHealth[positionParsed];
+
+  setBlockHealth(positionParsed, blockHealth - playerDamage);
+  /*blockElement.style["background-color"] = "black";*/
+}
+
+// important buttons !!!!!!!!!!!!!!!!!
+// A goes left, D goes Right
+// E hits.
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "a") {
+    goDirection(-1);
+  }else if (event.key === "d") {
+    goDirection(1);
+  }else if (event.key === "e"){
+    attack();
+  }
+});
