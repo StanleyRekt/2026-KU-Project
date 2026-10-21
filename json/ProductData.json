@@ -1,0 +1,152 @@
+
+[
+  {
+    "name": "Almighty Sword",
+    "description": "It is said that an almighty sword once used this Sword in his last battle. It now sits awaiting for the next hero.",
+    "simplified": "Sword",
+    "category": "Swords",
+    "price": 32.99,
+    "image": "https://media.istockphoto.com/id/1062941908/photo/sword-in-the-stone.jpg?s=612x612&w=0&k=20&c=dXaSVBMKoPtMP2Pp7mHgkM-Pfh8cT_vjB6gXae6oAH4=",
+    "img_alt": "A rusty sword"
+  },
+
+  {
+    "name": "Copper Sword",
+    "description": "Any terraria fans? No? Awh.. This copper sword is used for beginners, Gunter produces these the most since plebians keep breaking them.",
+    "simplified": "Copper Sword",
+    "category": "Swords",
+    "price": 5.99,
+    "image": "https://preview.redd.it/ive-started-making-terraria-weapons-realistic-copper-v0-sx7uqrc5ggrd1.jpg?width=640&crop=smart&auto=webp&s=611f2d9003cb91082b30f8d3a7bde4ca31bf0552",
+    "img_alt": "Terraria Copper Sword"
+  },
+
+  {
+    "name": "Sovereign Sword",
+    "description": "It's shiny, strong, made of iron, and has a good handle. This is good for any adventure who dares to join a battle of glory.",
+    "simplified": "Iron Sword",
+    "category": "Swords",
+    "price": 11.75,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjsOEPUecqW4PgqKdUXwpIKqPHpt49AQDBIgu8azAnmQ&s=10",
+    "img_alt": "Realistic Iron Sword"
+  },
+
+  {
+    "name": "Duskbringer",
+    "description": "Not beginner friendly, the dual wielding swords require intensive training to master the art of wielding two swords. It's risky but the reward is worth it.",
+    "simplified": "Dual wield great swords",
+    "category": "Swords",
+    "price": 16.99,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5-BlpPSPTflleqIsoBdjalDW90BjlZ6O13nWFS8IhPA&s=10",
+    "img_alt": "Dual wield great swords"
+  },
+
+  {
+    "name": "Knight's Plate Armor",
+    "description": "Knights that charge into battle must protect their body from the slashes and barrage of metal on metal. They protect the vitals, giving one more chance for success.",
+    "simplified": "Armor",
+    "category": "Armor",
+    "price": 18.99,
+    "image": "https://c8.alamy.com/comp/3BDT57W/field-armour-garniture-half-shaffron-plate-armour-of-the-3rd-earl-of-worcester-heaviest-armour-in-the-world-tower-of-london-3BDT57W.jpg",
+    "img_alt": "A knight's plate armor"
+  },
+
+  {
+    "name": "Brigandine",
+    "description": "Body armor made of small steel plates riveted inside using fabric and other leather materials. Used by Eurpoean soldiers in the 14th century.",
+    "simplified": "Leather jacket",
+    "category": "Armor",
+    "price": 13.59,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSJ0NBYusmfX9OJL1SO-LRG66LUxRCK7y_fDNucCitll38hHAJQXmdeto&s=10",
+    "img_alt": "Lether Jacket"
+  },
+
+  {
+    "name": "Leather Cuirass",
+    "description": "A protective torso piece made from leather to cover the chest and back. These are best for mability while covering the vital areas.",
+    "simplified": "Stiff torso piece made from leather",
+    "category": "Armor",
+    "price": 5.75,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAMO7YPvnnE61UpjBBtLmrX0TI15ok7Soi1CdW5yO_IQ&s=10",
+    "img_alt": "Leather Torso Armor"
+  },
+
+  {
+    "name": "Knight's Chainmail",
+    "description": "A flexible armor made of thousands of interlocking metal rings, great protection against slashes and weapons. However less effective against blunt forces.",
+    "simplified": "Chainmail",
+    "category": "Protection",
+    "price": 8.59,
+    "image": "https://t4.ftcdn.net/jpg/05/53/27/73/360_F_553277363_I5r7sxGYw9dECTVJ821Tv1NC7f0VCz57.jpg",
+    "img_alt": "Knight's chainmail armor"
+  },
+
+  {
+    "name": "Thick Gambeson",
+    "description": "A defensive jacket of multiple layers of quilted cloth worn underneath heavy armor like chainmail to absorb blunt impacts. It's also great for the winter time.",
+    "simplified": "Gambeson",
+    "category": "Protection",
+    "price": 6.75,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgM_Ug2QkBFEZQUyv--Y-6MRbGmpcH54N1GfUndqzj7Q&s",
+    "img_alt": "Thick Gambeson"
+  },
+
+  {
+    "name": "Mail Coif",
+    "description": "Similar to the Knight's Chainmail, this hood made of the same material is designed to protect your head, neck, and shoulders against slashes. I recommend wearing a cushion for your head.",
+    "simplified": "Flexible hood to protect the head and neck",
+    "category": "Protection",
+    "price": 3.99,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwwWdCkwWpkBWClBxLHcK-Dg9ZijCnBCr5N5VmA_re1-ZBjEjjdroIGHc&s=10",
+    "img_alt": "Flexible hood to protect the head and neck"
+  },
+
+  {
+    "name": "Cooking Pot",
+    "description": "A great versatile item. Just throw your scraps of meat, vegatables, seasoning, and base. Then after a while you'll get a meal that's easy to clean later.",
+    "simplified": "Pot",
+    "category": "Cooking",
+    "price": 5.99,
+    "image": "https://t4.ftcdn.net/jpg/14/29/62/15/360_F_1429621524_fVmYQ7DHwtxp2Y6emJws8oQa257yk2RV.jpg",
+    "img_alt": "A cooking pot"
+  },
+
+  {
+    "name": "Cast Iron Skillet",
+    "description": "Great for carrying around during tough battles where movement is necessary. The coating allows for meals to sustain it's aroma and flavor. It can also be used as a handheld weapon.",
+    "simplified": "Iron Skillet",
+    "category": "Cooking",
+    "price": 4.25,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlD4udPZYhFk3kJbeJbXim_LKIKEcViq5g6Dftwp86lA&s=10",
+    "img_alt": "Cast Iron Skillet"
+  },
+
+  {
+    "name": "Butcher's Cleaver",
+    "description": "After fighting against a boar, you must utilize a butchering cleaver to componentize your kill and feed your allies. Remember to keep it sharp or else everyone will go hungry.",
+    "simplified": "Cleaver",
+    "category": "Cooking",
+    "price": 11.59,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTirEXsf7p0zVs3Dfe5QOnRwz4J0utRu5kz9cwcXYRngQ&s=10",
+    "img_alt": "Butchering Cleaver"
+  },
+
+  {
+    "name": "Woodle Ladle",
+    "description": "Mixing, Scooping, and Serving. Typically holds 4 to 6 ounches for soup, however it can carry thicker meals with no problem. Remember to clean it.",
+    "simplified": "Ladle",
+    "category": "Cooking",
+    "price": 2.25,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT1GlbnUSxTxXHzNRqMWybL0jXcHRfAOKQaFnZW4ABgH0QQW5h4x5psqj_&s=10",
+    "img_alt": "Wooden ladle"
+  },
+
+  {
+    "name": "Stone Mortar",
+    "description": "Handcrafted by your very blacksmith Gunter. Made of durable granite and useds to crush or grind herbs, spices, and aromatics.",
+    "simplified": "Mortar",
+    "category": "Cooking",
+    "price": 3.55,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAYCV7L6v7adNW3AhgVYsqAtOP92pzJI9b03ZyQ_jDnw&s=10",
+    "img_alt": "Stone Mortar"
+  }
+]

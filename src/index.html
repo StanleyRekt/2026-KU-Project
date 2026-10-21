@@ -16,117 +16,110 @@
 
   <!-- Header semantic for the store title and description-->
   <header class="topbar">
+    <div class="topbar-primary">
+      <h1 class="title">Gunter's Store</h1>
 
-    <h1 class="title">Gunter's Store</h1>
+      <p class="description">
+        Place an order for any of the tools that Gunter provides
+      </p>
+    </div>
 
-    <p class="description">
-      Place an order for any of the tools that Gunter provides
-    </p>
-
+    <nav class="navbar">
+      <a onclick="display(`selection`)">Selection</a>
+      <a onclick="display(`cart`)">Cart Order</a>
+      <a onclick="display(`queue`)">List queue</a>
+    </nav>
   </header>
+
+  <img class="background-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxfuU-9UrqIviCsEBEQ3CmcuzemC4q14-Mmhmfy4_nL16TyyqX-RcaZg&s=10" alt="Beautiful Medieval Minecraft Build" />
 
   <!-- Primary content of the webpage, all inside main "container" -->
   <main class="container">
 
-    <!-- ======== Tab Selection Bar ============ -->
-    <div class="tabs">
-      <h2 id="tabs-label">Selection:</h2>
+    <div id="page-1" class="page">
 
-      <!-- Tab buttons for each product categories -->
-      <div class="tab-buttons">
-        <button class="tab-button">Swords</button>
-        <button class="tab-button">Armor</button>
-        <button class="tab-button">Protection</button>
-        <button class="tab-button">Cooking</button>
+      <!-- ======== Tab Selection Bar ============ -->
+      <div class="tabs">
+        <h2 id="tabs-label">Selection:</h2>
+
+        <!-- Tab buttons for each product categories -->
+        <div class="tab-buttons">
+          <button class="tab-button">Swords</button>
+          <button class="tab-button">Armor</button>
+          <button class="tab-button">Protection</button>
+          <button class="tab-button">Cooking</button>
+        </div>
+
+        <!-- Search bar for quick product selection -->
+        <input type="search" id="selection-search" name="q" placeholder="Search for product..." />
+
+        <!-- Somewhere around here I'll include my custom feature -->
+
       </div>
 
-      <!-- Search bar for quick product selection -->
-      <input type="search" id="selection-search" name="q" placeholder="Search for products..." />
+      <br>
 
-      <!-- Somewhere around here I'll include my custom feature -->
+      <!-- ======== Product Content ============ -->
+      <div class="selection">
 
-    </div>
+        <!-- Each item element are housed inside a grid <section> -->
+        <div id="grid-container">
 
-    <br>
-
-    <!-- ======== Product Content ============ -->
-    <div class="selection">
-
-      <!-- Each item element are housed inside a grid <section> -->
-      <section class="grid" id="grid-swords">
-
-        <!-- Right now each element are hardcoded but soon it'll be optimized using JavaScript -->
-        <!-- Each element include their title (productName + price), image display, and buttons (add to cart, etc)-->
-        <div class="item">
-          <p class="item-title">Almighty Sword - $12.99</p>
-          <img class="product-img" alt="A rusty sword"
-            src="https://media.istockphoto.com/id/1062941908/photo/sword-in-the-stone.jpg?s=612x612&w=0&k=20&c=dXaSVBMKoPtMP2Pp7mHgkM-Pfh8cT_vjB6gXae6oAH4=" />
-          <button class="add-button" id="1">Add to Cart</button>
-        </div>
-
-        <div class="item">
-          <p class="item-title">Knight's Plate Armor - $8.99</p>
-          <img class="product-img" alt="A knight's plate armor"
-            src="https://c8.alamy.com/comp/3BDT57W/field-armour-garniture-half-shaffron-plate-armour-of-the-3rd-earl-of-worcester-heaviest-armour-in-the-world-tower-of-london-3BDT57W.jpg" />
-          <button class="add-button" id="2">Add to Cart</button>
-        </div>
-
-        <div class="item">
-          <p class="item-title">Knight's Chainmail - $3.99</p>
-          <img class="product-img" alt="Knight's chainmail armor"
-            src="https://t4.ftcdn.net/jpg/05/53/27/73/360_F_553277363_I5r7sxGYw9dECTVJ821Tv1NC7f0VCz57.jpg" />
-          <button class="add-button" id="3">Add to Cart</button>
-        </div>
-
-        <div class="item">
-          <p class="item-title">A Feast's Cooking Pot - $5.99</p>
-          <img class="product-img" alt="A cooking pot"
-            src="https://t4.ftcdn.net/jpg/14/29/62/15/360_F_1429621524_fVmYQ7DHwtxp2Y6emJws8oQa257yk2RV.jpg" />
-          <button class="add-button" id="4">Add to Cart</button>
+          <!-- Right now each element are optimized using JavaScript -->
+          <!-- Each element include their title (productName + price), image display, and buttons (add to cart, etc)-->
 
         </div>
+      </div>
 
-      </section>
-    </div>
+      <!-- ======== Overlay Content ============ -->
+      <!-- For each product the user can click on it to view more details, displaying over the webpage -->
+      <div class="overlay, hidden">
+        <div id="overlay-content">
 
-    <!-- ======== Overlay Content ============ -->
-    <!-- For each product the user can click on it to view more details, displaying over the webpage -->
-    <div id="overlay">
-      <div id="overlay-content">
+          <!-- Text above details, default labels to provide context-->
+          <h3 id="overlay-label">Product Details</h3>
+          <p>This is the placeholder for overlay</p>
 
-        <!-- Text above details, default labels to provide context-->
-        <h3 id="overlay-label">Product Details</h3>
-        <p>This is the placeholder for overlay</p>
+          <!-- Product details section, including the productImage, text details, and QOL buttons-->
+          <section class="overlay-details">
 
-        <!-- Product details section, including the productImage, text details, and QOL buttons-->
-        <section class="overlay-details">
+            <img class="product-img" id="overlay-img" alt="A rusty sword"
+              src="https://media.istockphoto.com/id/1062941908/photo/sword-in-the-stone.jpg?s=612x612&w=0&k=20&c=dXaSVBMKoPtMP2Pp7mHgkM-Pfh8cT_vjB6gXae6oAH4=" />
 
-          <img class="product-img" id="overlay-img" alt="A rusty sword"
-            src="https://media.istockphoto.com/id/1062941908/photo/sword-in-the-stone.jpg?s=612x612&w=0&k=20&c=dXaSVBMKoPtMP2Pp7mHgkM-Pfh8cT_vjB6gXae6oAH4=" />
+            <div class="overlay-details-text">
+              <h2>Placeholder Label</h2>
+              <p>Wow this placeholder label is so cool this is a description of me saying how cool it is.</p>
+              <h3>Cost: so much</h3>
 
-          <div class="overlay-details-text">
-            <h2>Placeholder Label</h2>
-            <p>Wow this placeholder label is so cool this is a description of me saying how cool it is.</p>
-            <h3>Cost: so much</h3>
+              <div id="overlay-buttons">
+                <button class="overlay-button">Close</button>
+                <button class="overlay-button">Add to Cart</button>
+              </div>
 
-            <div id="overlay-buttons">
-              <button class="overlay-button">Close</button>
-              <button class="overlay-button">Add to Cart</button>
             </div>
 
-          </div>
-
-        </section>
+          </section>
+        </div>
       </div>
+
     </div>
 
+    <div id="page-2" class="page-hidden">
+      <h2>Cart Order</h2>
+      <p>This is the placeholder for Cart Order</p>
+    </div>
+
+    <div id="page-3" class="page-hidden">
+      <h2>List Queue</h2>
+      <p>This is the placeholder for List Queue</p>
+    </div>
   </main>
 
   <!-- In the future may include a footer for additional information or even copyright (@Gunter) -->
 
   <!-- ======== HTML JavaScript link ============ -->
   <!-- Seperated outside of HTML for better organization -->
-  <script src="./index.mjs" type="module"></script>
+  <script src="./script.js" type="module"></script>
 </body>
 
 </html>

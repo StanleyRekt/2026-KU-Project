@@ -1,4 +1,4 @@
-# Gunter's Magical Orb Storepage
+# Gunter's Blacksmith Storepage
 
 ## HSD Team Name: "Null Pointer Exception", Number: 
 
@@ -63,5 +63,3 @@ Additionally, customers can view details of said items, while being able to sear
 
 ## Team Contribution
 *   I'm running solo. Me, Shane Z, developed this project with the help of online learning tools such as "freeCodeCamp," "Youtube," "CodeSandbox," etc.
-
-> Side Note this commit was my first saved version, used to establish the basic layout
