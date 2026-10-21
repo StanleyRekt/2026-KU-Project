@@ -32,7 +32,11 @@
   </header>
 
   <img class="background-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjxfuU-9UrqIviCsEBEQ3CmcuzemC4q14-Mmhmfy4_nL16TyyqX-RcaZg&s=10" alt="Beautiful Medieval Minecraft Build" />
-
+  
+  <div id="mic-div">
+    <button id="mic-btn" class="microphone">&#127908</button>
+  </div>
+  
   <!-- Primary content of the webpage, all inside main "container" -->
   <main class="container">
 
@@ -41,7 +45,6 @@
       <!-- ======== Tab Selection Bar ============ -->
       <div class="tabs">
         <h2 id="tabs-label">Selection:</h2>
-
         <!-- Tab buttons for each product categories -->
         <div class="tab-buttons">
           <button class="btn tab-button">Swords</button>
@@ -49,9 +52,6 @@
           <button class="btn tab-button">Protection</button>
           <button class="btn tab-button">Cooking</button>
         </div>
-
-        <!-- Search bar for quick product selection -->
-        <input type="search" id="selection-search" name="q" placeholder="Search for product..." />
 
         <!-- Somewhere around here I'll include my custom feature -->
 
@@ -100,6 +100,15 @@
             </div>
 
           </section>
+        </div>
+      </div>
+
+      <div class="overlay hidden" id="mic-overlay-container">
+        <div id="overlay-content" class="microphone-content">
+            <p id="output">Testing Testing...</p>
+            <button id="record-btn" class="microphone">&#127908</button>
+            <label id="output-terminal">Click on Microphone to start speaking</label>
+            
         </div>
       </div>
 

@@ -26,7 +26,6 @@ Customers can browse the selection of weaponry, place their custom order directl
 2.  **Details:** Clicking on the item or anywhere near it will present details of the items.
 3.  **Ordering:** To order, click on the button that says "Add to Cart," including the quantity (default to 1).
 4.  **Queue:** To search for the live to-do list, look towards the top of the webpage for a "To-Do List" option which should display your active orders, including list of items, quantities, Order ID, Time, Customer Name, Note, etc.
-5.  **Search Bar:** Next to the categories, there will be a search bar. Click on it and type what item name(s) to display.
 6.  **Verbal Order:** To verbally order your item, click on the button above the categories, then (using a microphone for desktop) verbally communicate your order. There should be a helper element to provide an example, and an additional option to type your order. After pressing "Done," it'll display your order prompting if it's correct, press "Yes" to add to your cart.
 
 ---
@@ -40,7 +39,6 @@ Customers can browse the selection of weaponry, place their custom order directl
 
 ### Custom Features:
 *   **Audible Ordering:** Linked audio input to customer order. Customers may verbally say what items to order and quantity.
-*   **Search bar:** Small additional feature to help customer search for what item they're choosing.
 
 ---
 
@@ -57,9 +55,6 @@ To run this application locallyon your personal computer (or magical orb), follo
    ```
 3. **Launch the app:**
    Open the `index.html` file in any modern web browser (Google Chrome, Microsoft Edge, Safari) to interact with the webpage.
-
-Additionally, customers can view details of said items, while being able to search the item's name in the search bar. 
-
 
 ## Team Contribution
 *   I'm running solo. Me, Shane Z, developed this project with the help of online learning tools such as "freeCodeCamp," "Youtube," "CodeSandbox," etc.

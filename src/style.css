@@ -375,6 +375,30 @@ span {
   justify-content: space-between;
 }
 
+.microphone-content button {
+  font-size: 3rem;
+}
+
+.microphone-content p {
+  font-size: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+#mic-div {
+  position: fixed;
+  left: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+.microphone {
+  border: none;
+  left: 90%;
+  font-size: 2rem;
+  background-color: rgba(0,0,0,0);
+}
+
 .hidden {
   display: none;
 }

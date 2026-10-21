@@ -312,3 +312,155 @@ overlayElement.addEventListener("click", (element) => {
     cart.calculateResult();
   }
 })
+
+const micElement = document.getElementById("mic-btn");
+const micOverlayElement = document.getElementById("mic-overlay-container");
+
+function setMicOverlay(enable) {
+  if (enable) {
+    micOverlayElement.classList.remove("hidden");
+  } else {
+    micOverlayElement.classList.add("hidden");
+  }
+}
+
+micOverlayElement.addEventListener("click", (element) => {
+  if (element.target.id === "mic-overlay-container" || element.target.id === "overlay-close-button") {
+    setMicOverlay(false);
+  }
+})
+
+micElement.addEventListener("click", () => {
+  setMicOverlay(true);
+})
+
+
+const recordButton = document.getElementById("record-btn");
+const output = document.getElementById("output");
+const outputTerminal = document.getElementById("output-terminal");
+
+/* Credits to @amsnippetzz on youtube for his showcase of Speech Recognization, it cool stuff */
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let isListening = false;
+let patternTranslation = {"a": 1, "an": 1, "any": 1, "some": 4, "couple": 5, "dozen": 12, "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9};
+
+let namePatterns = {};
+let numericalPatterns = [1, 2, 3, 4, 5, 6, 7, 8, 9]; /* One day I'll have this count above single digits */
+
+let patternRepository = [];
+let pairs = [];
+
+let targetNumerical = null;
+
+function seperateString(sentence) {
+  return sentence.trim().toLowerCase().split(/\s+/);
+}
+
+for (let i = 0; i < productData.length; i++) {
+  const product = productData[i];
+
+  namePatterns[i] = seperateString(product.simplified); /* From what I researched on forums, this should split even with multiple spaces*/
+}
+
+console.log(namePatterns);
+
+function determineLikeness(word) {
+  console.log(word);
+  if (patternTranslation[word]) {
+    word = patternTranslation[word];
+    console.log("translated number", word);
+  }
+
+  if (!isNaN(word) && isFinite(word)) {
+    console.log("found number", word);
+    targetNumerical = Number(word);
+    return true;
+  }
+  console.log(targetNumerical);
+  for (let i = 0; i < productData.length; i++ ){
+    const words = namePatterns[i];
+    for (const pattern of words) {
+      if ((word === pattern) && (targetNumerical !== null)) {
+
+        console.log("found pattern", pattern);
+
+        patternRepository.push([targetNumerical, i]); /* [amount, id] */
+        targetNumerical = null;
+
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+if (!SpeechRecognition) {
+  alert("Browser does not support Speech Recognition.");
+
+} else {
+  const recognition = new SpeechRecognition();
+
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recordButton.addEventListener('click', () => {
+    if (isListening) {
+      recognition.stop();
+      outputTerminal.textContent = "Start Listening";
+
+      isListening = false;
+
+    } else {
+      recognition.start();
+      outputTerminal.textContent = "Stop Listening";
+
+      isListening = true;
+    }
+  });
+
+  recognition.onresult = function (event) {
+    console.log("RESET");
+    patternRepository = [];
+    targetNumerical = null;
+    let transcript = "";
+    let htmlTranscript = "";
+    
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      if (event.results[i].isFinal) {
+        let nextWords = event.results[i][0].transcript;
+        let wordArray = seperateString(nextWords);
+        for (const nextWord of wordArray) {
+          let success = determineLikeness(nextWord);
+
+          if (success) {
+            transcript += nextWord + " ";
+            htmlTranscript += `<label>${nextWord}</label> `;
+            
+          } else {
+            transcript += nextWord + " ";
+            htmlTranscript += nextWord+ " ";
+
+          }
+
+        }
+
+      }
+    }
+
+    output.innerHTML = transcript;
+  };
+
+  recognition.onerror = function (event) {
+    console.error("Speech recognition error:", event.error);
+  };
+
+  recognition.onend = function () {
+    outputTerminal.textContent = "Start Listening";
+    isListening = false;
+
+    console.log(patternRepository);
+  };
+}
